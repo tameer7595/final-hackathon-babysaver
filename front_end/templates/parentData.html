@@ -1,19 +1,61 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-	<title>Form Demo</title>
+	<title>Baby Saver</title>
+	<meta charset="utf-8">
+	<meta name = "viewport" content="width=device-width, initial-scale=1">
+	<link href="{{url_for('static' , filename = 'global.css')}}" type="text/css" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>BABY SAVER</h1>
-<form name="passdata" action="." method="post" >
-	<label for="username">CAR NUMBER:</label>
-	<input id="username" name="CAR NUMBER" type="text" placeholder="car number" required="">
-	<label>
-		PHONE NUMBER:<input name="PHONE NUMBER" type="text" placeholder="phone number" required="">
-	</label>
-	<input type="submit" name="">
-</form>
+		<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        			<span class="sr-only">Toggle navigation</span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+      			</button>
+				<!-- navbar-brand must follow a navbar-header -->
+				<a href="#" class="navbar-brand">Baby Saver</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+	</div>
+	</nav>
+	<div class = "container-fluid bg">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 col-xs-12"></div>
+			<div class="col-md-4 col-sm-4 col-xs-12">
+			<!-- form start-->
+			<form class="form-container">
+  				<div class="form-group">
+    				<label for="exampleInputEmail1">Car Number</label>
+    					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+  				</div>
+  				<div class="form-group">
+    				<label for="exampleInputPassword1">Phone Number</label>
+    				<input type="password" class="form-control" id="exampleInputPassword1">
+  				</div>
+  				<small id="emailHelp" class="form-text text-muted">We'll never share your data  with anyone else.</small>
+  				<div>
+ 				<button type="submit" class="btn btn-sucess btn-block">Submit</button>
+ 				</div>
+			</form>
+			<!-- form end-->
+			</div>
+		<div class="col-md-4 col-sm-4 col-xs-12"></div>
+		</div>
+	</div>
 </body>
 </html>
