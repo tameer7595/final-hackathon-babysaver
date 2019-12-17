@@ -1,7 +1,8 @@
-body{background-image: background-image:url('/static/img/b.jpg') no-repeat ;
-background-size: cover;
-background-position: center;
-font-family: Lato;
+body{
+    background-image: url({{ url_for('static', filename='static/images/background.jpg') }})no-repeat ;
+    background-size: cover;
+    background-position: center;
+    font-family: Lato;
  }
 .form-container{
 border : 1px solid #fff; padding: 50px 60px; margin-top: 20vh;

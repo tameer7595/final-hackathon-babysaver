@@ -14,7 +14,7 @@ def getData():
     data = []
     data.append(request.form['CAR NUMBER'])
     data.append(request.form['PHONE NUMBER'])
-    data_string = ', '.join(data)
+    data_string = ','.join(data)
     response = requests.post(func_url, data=data_string)
 
     return data_string
