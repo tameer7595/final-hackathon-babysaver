@@ -1,18 +1,26 @@
 from flask import Flask, request, Response, jsonify
-# from flask_mongoengine import MongoEngine
-
+import flask_mongoengine
+import mongoengine as me
 import warnings
+from Dealer import dealer
+
 warnings.simplefilter("ignore", DeprecationWarning)
 
 # Initialize the Flask application
+
 app = Flask(__name__)
+app.config.from_object(__name__)
 
-app.config['MONGODB_SETTINGS'] = {
-    "db": "myapp",
-}
+app.config['MONGODB_SETTINGS'] = {'DB': 'babysaver'}
+
+db = flask_mongoengine.MongoEngine()
+db.init_app(app)
 
 
-# db = MongoEngine(app)
+class User(me.Document):
+    car_number = me.StringField(max_length=20)
+    phone_numbers = me.StringField(max_length=200)
+
 
 @app.route('/')
 def start():
@@ -24,7 +32,16 @@ def start():
 def pi():
     r = request
     car_license = r.data.decode("utf-8")
-    print(f"from pi: {car_license}")
+
+    try:
+        phone_numbers = next(User.objects(car_number__contains=car_license)).phone_number.split(',')
+
+        for phone in phone_numbers:
+            dealer.send_message(phone)
+            dealer.phone_call(phone)
+    finally:
+        pass
+
     return jsonify({'ip': request.remote_addr}), 200
 
 
@@ -32,7 +49,16 @@ def pi():
 @app.route('/api/web_page', methods=['POST'])
 def web_page():
     r = request
-    car_license = r.data.decode("utf-8")
+    data = r.data.decode("utf-8")
+    spliting_data = data.split(',')
+    car_license = spliting_data[0]
+    phone_num = spliting_data[1]
+    try:
+        User.objects(car_number__contains=car_license).update(
+            set__phone_numbers=next(User.objects(car_number__contains=car_license)).phone_numbers + ',' + phone_num)
+    finally:
+        User(car_number=car_license, phone_numbers=phone_num).save()
+
     print(f"from web page: {car_license}")
     return jsonify({'ip': request.remote_addr}), 200
 
